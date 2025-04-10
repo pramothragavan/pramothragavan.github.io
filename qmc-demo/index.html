@@ -230,6 +230,12 @@
         <ul id="menu">
         </ul>
     </nav>
+    <script>
+        document.getElementById("theme-toggle").addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("pref-theme", document.body.classList.contains("dark") ? "dark" : "light");
+        });
+    </script>
 </header>
 <main class="main">
 
