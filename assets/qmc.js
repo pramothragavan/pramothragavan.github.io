@@ -1,18 +1,15 @@
-// Global variables for the charts and pause flag.
 let probChart, coherenceChart;
-let simulationTimer; // for debouncing
-let paused = false;  // simulation running by default
+let simulationTimer;
+let paused = false;
 
 async function runSimulation(params) {
   console.log("Running simulation with params:", params);
 
-  // Load Pyodide
   const pyodide = await loadPyodide({
     indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
   });
   await pyodide.loadPackage("numpy");
 
-  // Load qmc.py into Pyodide's virtual filesystem
   try {
     await pyodide.runPythonAsync(`
       from pyodide.http import pyfetch
@@ -27,12 +24,10 @@ async function runSimulation(params) {
 
   try {
     await pyodide.runPythonAsync(`import qmc`);
-    // Run simulation with parameters (steps fixed at 50 for now)
     let result = await pyodide.runPythonAsync(
       `qmc.simulate_qmc(50, ${params.lam1}, ${params.lam2}, ${params.p})`
     );
 
-    // Convert Pyodide object to a JS object
     if (typeof result.toJs === "function") {
       result = result.toJs();
     }
@@ -48,7 +43,6 @@ async function runSimulation(params) {
     const { probs, coherences } = result;
     const labels = Array.from({ length: 50 }, (_, i) => i + 1);
 
-    // Render probability chart
     const probCanvas = document.getElementById("qmcChartProb");
     const probCtx = probCanvas.getContext("2d");
     if (probChart) {
@@ -84,7 +78,6 @@ async function runSimulation(params) {
     });
     console.log("Probability chart rendered");
 
-    // Render coherence chart
     const coherenceCanvas = document.getElementById("qmcChartCoherence");
     const coherenceCtx = coherenceCanvas.getContext("2d");
     if (coherenceChart) {
@@ -99,14 +92,12 @@ async function runSimulation(params) {
             label: "Site 1 Coherence",
             data: coherences.map(c => c[0]),
             borderWidth: 2,
-            borderDash: [5, 5],
             fill: false,
           },
           {
             label: "Site 2 Coherence",
             data: coherences.map(c => c[1]),
             borderWidth: 2,
-            borderDash: [5, 5],
             fill: false,
           }
         ]
@@ -127,13 +118,11 @@ async function runSimulation(params) {
 }
 
 function scheduleSimulationUpdate() {
-  // Only run simulation if not paused.
   if (paused) {
-    console.log("Simulation is paused; skipping update.");
+    console.log("Simulation is paused; skipping update");
     return;
   }
   clearTimeout(simulationTimer);
-  // Run simulation after a 300ms debounce delay
   simulationTimer = setTimeout(() => {
     const params = {
       p: parseFloat(document.getElementById("pInput").value),
@@ -154,7 +143,6 @@ function setupControls() {
   const lam2Value = document.getElementById("lam2Value");
   const toggleBtn = document.getElementById("toggleSimulation");
 
-  // Update slider displays and schedule simulation updates.
   pInput.addEventListener("input", function() {
     pValue.textContent = pInput.value;
     scheduleSimulationUpdate();
@@ -168,21 +156,19 @@ function setupControls() {
     scheduleSimulationUpdate();
   });
 
-  // Toggle pause/resume when the button is clicked.
   toggleBtn.addEventListener("click", function() {
     paused = !paused;
     if (paused) {
       toggleBtn.textContent = "Resume Simulation";
-      console.log("Simulation paused.");
+      console.log("Simulation paused");
     } else {
       toggleBtn.textContent = "Pause Simulation";
-      console.log("Simulation resumed.");
-      scheduleSimulationUpdate(); // run simulation when unpausing
+      console.log("Simulation resumed");
+      scheduleSimulationUpdate();
     }
   });
 }
 
-// Initialize on DOM load
 window.addEventListener("DOMContentLoaded", function() {
   setupControls();
   const initialParams = {
