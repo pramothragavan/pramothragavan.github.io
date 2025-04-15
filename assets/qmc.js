@@ -1,4 +1,4 @@
-let probChart, coherenceChart;
+let gapChartprobChart, coherenceChart;
 let simulationTimer;
 let paused = false;
 
@@ -54,13 +54,13 @@ async function runSimulation(params) {
         labels: labels,
         datasets: [
           {
-            label: "Site 1 Probability",
+            label: "Site 1",
             data: probs.map(p => p[0]),
             borderWidth: 2,
             fill: false,
           },
           {
-            label: "Site 2 Probability",
+            label: "Site 2",
             data: probs.map(p => p[1]),
             borderWidth: 2,
             fill: false,
@@ -70,7 +70,17 @@ async function runSimulation(params) {
       options: {
         responsive: true,
         scales: {
+          x: {
+            title: {
+              display: true,
+              text: "Time Steps"
+            }
+          },
           y: {
+            title: {
+              display: true,
+              text: "Probability"
+            },
             beginAtZero: true,
           }
         }
@@ -89,13 +99,13 @@ async function runSimulation(params) {
         labels: labels,
         datasets: [
           {
-            label: "Site 1 Coherence",
+            label: "Site 1",
             data: coherences.map(c => c[0]),
             borderWidth: 2,
             fill: false,
           },
           {
-            label: "Site 2 Coherence",
+            label: "Site 2",
             data: coherences.map(c => c[1]),
             borderWidth: 2,
             fill: false,
@@ -105,7 +115,15 @@ async function runSimulation(params) {
       options: {
         responsive: true,
         scales: {
+          x : {title: {
+            display: true,
+            text: "Time Steps"
+          }},
           y: {
+            title: {
+              display: true,
+              text: "Coherence"
+            },
             beginAtZero: true,
           }
         }
