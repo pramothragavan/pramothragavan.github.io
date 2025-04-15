@@ -1,4 +1,4 @@
-let gapChartprobChart, coherenceChart;
+let probChart, coherenceChart;
 let simulationTimer;
 let paused = false;
 
