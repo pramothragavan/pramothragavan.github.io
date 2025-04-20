@@ -54,14 +54,12 @@ async function runSimulation(params) {
           label: "p = 0",
           data: probs0,
           borderWidth: 2,
-          borderDash: [4, 4],
           fill: false,
         },
         {
           label: "p = 1",
           data: probs1,
           borderWidth: 2,
-          borderDash: [2, 2],
           fill: false,
         },
         {
@@ -95,7 +93,7 @@ async function runSimulation(params) {
             text: "Probability"
           },
           min: 0,
-          max: 1
+          max: 1.2
         }
       }
     }
