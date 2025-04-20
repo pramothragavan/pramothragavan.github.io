@@ -2,55 +2,41 @@
 
 import numpy as np
 
-def identity(rho):
-    return rho
+def dephasing(rho):
+    projectors = [
+        np.array([[1, 0], [0, 0]]),  # |0⟩⟨0|
+        np.array([[0, 0], [0, 1]])   # |1⟩⟨1|
+    ]
+    return sum(P @ rho @ P for P in projectors)
 
-def partial_dephase(rho, p):
-    diag_rho = np.diag(np.diag(rho))
-    return (1 - p) * rho + p * diag_rho
+def simulate_qmc(steps, alpha, beta, p):
+    plus = np.array([1, 1]) / np.sqrt(2)
+    minus = np.array([1, -1]) / np.sqrt(2)
 
-def build_tom(lam1, lam2, p):
-    def E11(rho): return lam1 * identity(rho)
-    def E21(rho): return (1 - lam1) * partial_dephase(rho, p)
-    def E12(rho): return lam2 * identity(rho)
-    def E22(rho): return (1 - lam2) * partial_dephase(rho, p)
-    return [[E11, E12], [E21, E22]]
+    F = np.array([[alpha, beta],
+                  [1 - alpha, 1 - beta]])
 
-def evolve_state(S, TOM):
-    new_S = []
-    for i in range(2):
-        new_rho = np.zeros((2, 2), dtype=complex)
-        for j in range(2):
-            new_rho += TOM[i][j](S[j])
-        new_S.append(new_rho)
-    return new_S
+    K_plus  = np.outer(np.array([1, 0]), plus.conj())
+    K_minus = np.outer(np.array([0, 1]), minus.conj())
 
-def initial_state():
-    psi0 = np.array([[1, 0], [0, 0]], dtype=complex)
-    psi_plus = np.array([[0.5, 0.5], [0.5, 0.5]], dtype=complex)
-    S1 = 0.6 * psi0
-    S2 = 0.4 * psi_plus
-    return [S1, S2]
+    def E_ij(rho, i, j, p):
+        meas = K_plus @ rho @ K_plus.conj().T if i == 0 else K_minus @ rho @ K_minus.conj().T
+        return (1 - p) * meas + p * F[i, j] * dephasing(rho)
 
-def coherence_measure(rho):
-    off_diag = rho.copy()
-    np.fill_diagonal(off_diag, 0)
-    return np.sum(np.abs(off_diag))
+    rho1 = np.outer(plus, plus.conj())
+    rho2 = np.zeros((2, 2), dtype=complex)
+    S = [rho1.copy(), rho2.copy()]
+    
+    probs1 = [np.trace(S[0]).real]
 
-def simulate_qmc(steps=50, lam1=0.7, lam2=0.8, p=0.5):
-    TOM = build_tom(lam1, lam2, p)
-    S = initial_state()
-    probs = []
-    coherences = []
     for _ in range(steps):
-        p1 = np.trace(S[0]).real
-        p2 = np.trace(S[1]).real
-        probs.append([p1, p2])
-        c1 = coherence_measure(S[0])
-        c2 = coherence_measure(S[1])
-        coherences.append([c1, c2])
-        S = evolve_state(S, TOM)
+        newS = [np.zeros((2, 2), complex), np.zeros((2, 2), complex)]
+        for i in [0, 1]:
+            for j in [0, 1]:
+                newS[i] += E_ij(S[j], i, j, p)
+        S = newS
+        probs1.append(np.trace(S[0]).real)
+
     return {
-        "probs": probs,
-        "coherences": coherences
+        "probs": probs1
     }

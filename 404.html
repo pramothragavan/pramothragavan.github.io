@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en" dir="auto">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script><meta charset="utf-8">
+<head><meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<meta name="robots" content="noindex, nofollow">
+<meta name="robots" content="index, follow">
 <title>404 Page not found | Pramoth Ragavan</title>
 <meta name="keywords" content="">
 <meta name="description" content="">
 <meta name="author" content="">
-<link rel="canonical" href="http://localhost:1313/404.html">
-<link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
-<link rel="icon" href="http://localhost:1313/assets/favicon.ico">
-<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon-16x16.png">
-<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon-32x32.png">
-<link rel="apple-touch-icon" href="http://localhost:1313/apple-touch-icon.png">
-<link rel="mask-icon" href="http://localhost:1313/safari-pinned-tab.svg">
+<link rel="canonical" href="https://pramothragavan.github.io/404.html">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.073b5ae5c6816ef6f836864391324e9117703fe06fd062e3044cda19d78e39f7.css" integrity="sha256-Bzta5caBbvb4NoZDkTJOkRdwP&#43;Bv0GLjBEzaGdeOOfc=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://pramothragavan.github.io/assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://pramothragavan.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pramothragavan.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://pramothragavan.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://pramothragavan.github.io/safari-pinned-tab.svg">
 <meta name="theme-color" content="#2e2e33">
 <meta name="msapplication-TileColor" content="#2e2e33">
-<link rel="alternate" hreflang="en" href="http://localhost:1313/404.html">
+<link rel="alternate" hreflang="en" href="https://pramothragavan.github.io/404.html">
 <noscript>
     <style>
         #theme-toggle,
@@ -55,7 +55,15 @@
         }
 
     </style>
-</noscript>
+</noscript><meta property="og:url" content="https://pramothragavan.github.io/404.html">
+  <meta property="og:site_name" content="Pramoth Ragavan">
+  <meta property="og:title" content="404 Page not found">
+  <meta property="og:locale" content="en-gb">
+  <meta property="og:type" content="website">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="404 Page not found">
+<meta name="twitter:description" content="">
+
 </head>
 
 <body class="list" id="top">
@@ -85,7 +93,7 @@
 <header class="header">
     <nav class="nav">
         <div class="logo">
-            <a href="http://localhost:1313/" accesskey="h" title="Pramoth Ragavan (Alt + H)">Pramoth Ragavan</a>
+            <a href="https://pramothragavan.github.io/" accesskey="h" title="Pramoth Ragavan (Alt + H)">Pramoth Ragavan</a>
             <div class="logo-switches">
                 <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
                     <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
@@ -120,28 +128,228 @@
     </script>
 </header>
 <main class="main">
-<div class="not-found">
-  <div style="font-size: 1.5rem; display: inline-block; text-align: center;">
+<div class="not-found" style="
+    position: relative;
+    top: 0;
+    text-align: center;
+    margin: 0;
+    padding-top: 2rem;
+">
+  <div style="font-size: 1.5rem; display: block; line-height: 1.4;">
     <div>Looks like you got lost?</div>
-    <div>😵</div>
+    <div style="margin: 0.5rem 0; display: flex; justify-content: center; align-items: center;">
+      <span style="display: inline-flex; align-items: center; gap: 0.5rem;">
+        <span id="emoji" style="cursor: pointer; font-size: 1.5rem;">😵</span>
+        <span id="solution-container" style="font-family: monospace; color: #FFB7CE; white-space: pre; font-size: 1rem;"></span>
+      </span>
+    </div>
     <div>404</div>
   </div>
 </div>
 
-<div class="problem-footer" style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 2rem 0; background-color: inherit;">
-  <div style="margin-bottom: 1rem;">
+<div class="problem-footer" style="position: relative; bottom: 0; left: 0; right: 0; text-align: center; padding: 1rem 0; background-color: inherit; max-width: 1100px; margin: 0 auto;margin-top: 5rem;">
+  <div style="text-align: center; margin-bottom: 0.5rem;">
     While you're here, try this problem!
   </div>
   <div id="problem" style="font-size: 1rem;"></div>
 </div>
 
+<div id="solution-screen" style="display: none; text-align: left; padding: 2rem;">
+  <button id="back-button" style="
+    background-color: transparent;
+    border: none;
+    color: #FFB7CE;
+    font-size: 1rem;
+    cursor: pointer;
+    margin-bottom: 1rem;
+    text-decoration: underline;
+  ">
+    ← Back
+  </button>
+  <div id="full-problem" style="font-weight: bold; margin-bottom: 1rem;"></div>
+  <div id="full-solution" style="white-space: normal;"></div>
+</div>
+
+
+
+<style>
+#solution-container{
+  font-family: monospace;
+  color: #FFB7CE;
+  white-space: pre;
+  font-size: 1rem;
+}
+
+#solution-container:empty{
+  display: none;
+}
+
+.blinking-cursor{
+  display: inline-block;
+  width: 8px;
+  height: 1em;
+  background-color: #FFB7CE;
+  animation: blink 1s steps(1) infinite;
+  vertical-align: middle;
+  margin-left: 2px;
+  position: relative;
+  top: -1px;
+}
+
+@keyframes blink {
+  50% {background-color: transparent;}
+}
+
+#solution-container.hoverable:hover {
+  text-decoration: underline;
+  cursor: pointer;
+}
+</style>
+
 <script>
   const problems = [
-    `Show that all non-trivial zeroes of \\[\\zeta(s)=\\sum_{n=1}^\\infty \\frac{1}{n^s}\\] have real part $\\frac{1}{2}$.`,
+    {
+      problem: `Show that all non-trivial zeroes of \\[\\zeta(s)=\\sum_{n=1}^\\infty \\frac{1}{n^s}\\] have real part $\\frac{1}{2}$.`,
+      solution: `I haven't yet found time to write up a solution for this problem. Feel free to send me a solution if you have one!`
+    },
+
+    {
+      problem: `A familiar result in real analysis is the Bolzano-Weierstrass theorem, which states that any bounded sequence of real numbers has a convergent subsequence. Prove this using <a href="https://mathworld.wolfram.com/RamseysTheorem.html" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Ramsey's Theorem</a>.`,
+      solution: `Ramsey's theorem intuitively states that in any sufficiently large set, there must be some structure. In a sense, with enough chaos comes order. Here's a formal statement of the infinite version of Ramsey's Theorem:<br><br>
+      <strong>Theorem: </strong> Let $k$ and $r$ be given positive integers. Suppose that the $k$-subsets of an infinite set $X$ are coloured with $r$ colours $c_1,\\dots,c_r$ in any manner. Then, for some $i$, there exists an infinite subset $Y$ of $X$, all of whose $k$-subsets have colour $c_i$.<br><br>
+      To leverage this, consider a bounded sequence of real numbers $(x_n)_n$. Let $\\{i, j\\}$ be a 2-element set of natural numbers, where we assume
+      without loss that $i < j$. Now colour $\\{i, j\\}$ red if $x_i \\leq x_j$ and blue otherwise. Ramsey's
+      theorem gives us an infinite monochromatic subset $Y$; let $s = (y_0, y_1,...)$ be the
+      subsequence of the $X$-sequence indexed by the elements of Y. If $Y$ is red, then $s$ is an increasing sequence; if $Y$ is blue, it is a decreasing sequence. In either case, it converges.`
+    },
+
+    {
+      problem: `Prove that for an irrational number $\\alpha$, there exist infinitely many rational numbers $\\frac{p}{q}$ such that \\[\\left|\\alpha-\\frac{p}{q}\\right|<\\frac{1}{q^2}.\\]`,
+      solution: `We first begin by stating a useful, and popular, result.<br><br>
+      <strong>Theorem: </strong> (Pigeonhole Principle) Let positive integers $r$ and $l_1,
+      l_2,\\dots, l_r$ be given. Suppose that $n \\ge l_1 +\\dots+l_r - r + 1$. If $n$ pigeons are in $r$ holes
+      $H_1,\\dots,H_r$, then for some $i \\in \\{1,\\dots,r\\}$, hole $H_i$ contains at least $l_i$
+      pigeons.<br><br>
+      This holds because if the conclusion fails, so that $H_i$ contains at most $l_i - 1$
+      pigeons for $i = 1,\\dots,r$, then the total number of pigeons is at most
+      $(l_1 -1) +\\dots+ (l_r -1) = l_1 +\\dots+l_r -r$,
+      contrary to assumption. Also, it is the exact answer, since if we had one fewer
+      pigeon, namely $l_1 +···+l_r -r$, then we could put $l_i -1$ pigeons into $H_i$.<br><br>
+
+      Now, back to the problem. For every natural number $n$ we can find
+      a rational number $\\frac{p}{q}$ with $q < n + 1$ and $|\\alpha - \\frac{p}{q}| < \\frac{1}{nq}$. To show this, let $c_n =
+      n\\alpha - \\lfloor n\\alpha\\rfloor$ for any $n$. Now the $n+1$ numbers $c_1, c_2,\\dots, c_{n+1}$ lie in the unit interval.
+      Consider dividing the interval into $n$ equal parts. By the pigeonhole principle, two of the numbers
+      $c_i$ and $c_j$ must lie in the same part, and so differ by at most $\\frac{1}{n}$.<br><br>
+      
+      This problem and solution was taken from Peter Cameron's <a href="https://www.cambridge.org/us/universitypress/subjects/mathematics/discrete-mathematics-information-theory-and-coding/combinatorics-topics-techniques-algorithms" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Combinatorics: Topics, Techniques, Algorithms</a>.`
+    },
+
+    
+    {
+      problem: `Let $T$ denote the set of "monsters" in the set of continuous functions on $[0,1]$. That is,
+    \\[T = \\left\\{ f \\in C([0,1]) \\ \\Big| \\ f \\text{ is not differentiable at any point} \\right\\}.\\]
+    Show that a typical continuous function belongs to $T$, i.e. $C([0,1])\\setminus T$ is meagre in $(C([0,1]), d_\\infty)$.<br>
+    <strong>Hint:</strong> For a metric space $X$ and closed subset $N \\subseteq X$, if $X \\setminus N$ is dense then $N$ is nowhere dense.`,
+      solution: `TO DO<br><br> A solution is available <a href="https://www.imsc.res.in/~kesh/nowhere.pdf" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">here</a>.`
+    },
+
+
+    {
+      problem: `A finite set of points in the plane is said to be in <em>general position</em> if no three of the points are collinear. A <em>convex $n$-gon</em> is a set of $n$ points in general position,
+    none of which is in the interior of the polygon formed by the others.<br><br>
+    
+    (a) Prove that given five points in general position in the plane, some four of
+    the points form a convex 4-gon.<br>
+    (b) Use <a href="https://mathworld.wolfram.com/RamseysTheorem.html" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Ramsey's Theorem</a>
+     to prove that there is a function $F$ such
+    that, given $F(n)$ points in the plane, some $n$ of them form a convex $n$-gon.<br>
+    (<strong>Hint:</strong> $F(n) = R_4(5,n)$. You need to show that given $n$ points, if any four of
+    them form a convex 4-gon, then all the points form a convex $n$-gon.)`,
+    solution: `This problem is known as the <a href="https://en.wikipedia.org/wiki/Happy_ending_problem" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Happy End Theorem</a>.
+    Part (a) was proven by Esther Szekeres and part (b) was later proven by George Szekeres. Erdős named it so because it led to the marriage of Esther and George, who in fact both died within an hour of one another, after long lives of fruitful mathematics.<br><br>
+        
+    <img src="https://imagepphcloud.thepaper.cn/pph/image/74/121/914.jpg"
+        alt="George and Esther Szekeres"
+        style="display: block; margin: 0 auto 1rem auto; max-width: 100%; height: auto; ">
+    (a) This can be done by drawing a figure. If the points form a convex
+    pentagon, or a quadrangle with one point in the interior, we are done; so assume
+    they form a triangle $ABC$ with two points $D, E$ in its interior. The line $DE$ does
+    not pass through a vertex of the triangle, so meets two sides, say $AB$ and $AC$, then
+    $BCDE$ is a convex quadrangle.<br><br>
+    (b) By Ramsey's Theorem, choose $N$ large enough that, if the 4-subsets of a set
+    of size $N$ are coloured red and blue, there is either a red 5-set or a blue $n$-set. Take
+    $N$ points in general position in the plane, and colour a 4-set blue if it is convex,
+    red otherwise. By (a), there is no red 5-set. So there must be a blue $n$-set. Now
+    you have to show that, if every four points from a set of $n$ points form a convex
+    quadrangle, then the entire set forms a convex polygon.`
+    }
   ];
 
+
   const randomIndex = Math.floor(Math.random() * problems.length);
-  document.getElementById("problem").innerHTML = problems[randomIndex];
+  const selected = problems[randomIndex];
+  document.getElementById("problem").innerHTML = selected.problem;
+
+  const emoji = document.getElementById('emoji');
+  const solutionContainer = document.getElementById('solution-container');
+  let typing = false;
+
+  emoji.addEventListener('click', async () => {
+    if (typing) return;
+    typing = true;
+
+    const message = 'Show solution?';
+    let typedText = '';
+
+    for (let i = 0; i < message.length; i++) {
+      typedText += message[i];
+      solutionContainer.innerHTML = `${typedText}<span class="blinking-cursor"></span>`;
+      solutionContainer.classList.add("hoverable");
+      await new Promise(resolve => setTimeout(resolve, 100));
+    }
+
+    await new Promise(resolve => setTimeout(resolve, 5000));
+
+    for (let i = message.length; i >= 0; i--) {
+      const currentText = message.slice(0, i);
+      solutionContainer.innerHTML = `${currentText}<span class="blinking-cursor"></span>`;
+      await new Promise(resolve => setTimeout(resolve, 80));
+    }
+
+    solutionContainer.innerHTML = '';
+    typing = false;
+  });
+
+  solutionContainer.addEventListener('click', () => {
+    if (solutionContainer.innerText.trim() === 'Show solution?') {
+      document.querySelector('.not-found').style.display = 'none';
+      document.querySelector('.problem-footer').style.display = 'none';
+
+      const screen = document.getElementById('solution-screen');
+      
+      document.getElementById('full-solution').innerHTML = selected.solution;
+      screen.style.display = 'block';
+    if (typeof renderMathInElement !== 'undefined') {
+      renderMathInElement(screen, {
+        delimiters: [
+          { left: "$$", right: "$$", display: true },
+          { left: "\\[", right: "\\]", display: true },
+          { left: "$", right: "$", display: false },
+          { left: "\\(", right: "\\)", display: false }
+        ]
+      });
+  }
+
+    }
+    
+  });
+  document.getElementById("back-button").addEventListener("click", () => {
+  document.getElementById("solution-screen").style.display = "none";
+  document.querySelector(".not-found").style.display = "block";
+  document.querySelector(".problem-footer").style.display = "block";
+});
+
 </script>
     </main>
     </body>

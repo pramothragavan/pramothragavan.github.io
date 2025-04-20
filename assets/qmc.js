@@ -1,36 +1,26 @@
-let probChart, coherenceChart;
+let probChart;
 let simulationTimer;
-let paused = false;
 
 async function runSimulation(params) {
-  console.log("Running simulation with params:", params);
-
   const pyodide = await loadPyodide({
     indexURL: "https://cdn.jsdelivr.net/pyodide/v0.23.4/full/"
   });
   await pyodide.loadPackage("numpy");
 
-  try {
-    await pyodide.runPythonAsync(`
-      from pyodide.http import pyfetch
-      response = await pyfetch("/assets/qmc.py")
-      with open("qmc.py", "wb") as f:
-          f.write(await response.bytes())
-    `);
-  } catch (error) {
-    console.error("Error loading qmc.py:", error);
-    return;
-  }
+  await pyodide.runPythonAsync(`
+    from pyodide.http import pyfetch
+    response = await pyfetch("/assets/qmc.py")
+    with open("qmc.py", "wb") as f:
+        f.write(await response.bytes())
+  `);
 
-  try {
-    await pyodide.runPythonAsync(`import qmc`);
+  await pyodide.runPythonAsync(`import qmc`);
+
+  const pyCall = async (pVal) => {
     let result = await pyodide.runPythonAsync(
-      `qmc.simulate_qmc(50, ${params.lam1}, ${params.lam2}, ${params.p})`
+      `qmc.simulate_qmc(${params.steps}, ${params.alpha}, ${params.beta}, ${pVal})`
     );
-
-    if (typeof result.toJs === "function") {
-      result = result.toJs();
-    }
+    if (typeof result.toJs === "function") result = result.toJs();
     if (result instanceof Map) {
       const obj = {};
       for (const [key, val] of result.entries()) {
@@ -38,115 +28,86 @@ async function runSimulation(params) {
       }
       result = obj;
     }
-    console.log("Final JS result:", result);
+    return result.probs;
+  };
 
-    const { probs, coherences } = result;
-    const labels = Array.from({ length: 50 }, (_, i) => i + 1);
+  const [probs0, probs1, probsCustom] = await Promise.all([
+    pyCall(0.0),
+    pyCall(1.0),
+    pyCall(params.p)
+  ]);
 
-    const probCanvas = document.getElementById("qmcChartProb");
-    const probCtx = probCanvas.getContext("2d");
-    if (probChart) {
-      probChart.destroy();
-    }
-    probChart = new Chart(probCtx, {
-      type: "line",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "Site 1",
-            data: probs.map(p => p[0]),
-            borderWidth: 2,
-            fill: false,
-          },
-          {
-            label: "Site 2",
-            data: probs.map(p => p[1]),
-            borderWidth: 2,
-            fill: false,
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        scales: {
-          x: {
-            title: {
-              display: true,
-              text: "Time Steps"
-            }
-          },
-          y: {
-            title: {
-              display: true,
-              text: "Probability"
-            },
-            beginAtZero: true,
-          }
+  const labels = Array.from({ length: probs0.length }, (_, i) => i);
+
+  const probCanvas = document.getElementById("qmcChartProb");
+  const probCtx = probCanvas.getContext("2d");
+  if (probChart) {
+    probChart.destroy();
+  }
+
+  probChart = new Chart(probCtx, {
+    type: "line",
+    data: {
+      labels: labels,
+      datasets: [
+        {
+          label: "p = 0",
+          data: probs0,
+          borderWidth: 2,
+          fill: false,
+        },
+        {
+          label: "p = 1",
+          data: probs1,
+          borderWidth: 2,
+          fill: false,
+        },
+        {
+          label: `p = ${params.p.toFixed(2)}`,
+          data: probsCustom,
+          borderWidth: 2,
+          fill: false,
         }
-      }
-    });
-    console.log("Probability chart rendered");
-
-    const coherenceCanvas = document.getElementById("qmcChartCoherence");
-    const coherenceCtx = coherenceCanvas.getContext("2d");
-    if (coherenceChart) {
-      coherenceChart.destroy();
-    }
-    coherenceChart = new Chart(coherenceCtx, {
-      type: "line",
-      data: {
-        labels: labels,
-        datasets: [
-          {
-            label: "Site 1",
-            data: coherences.map(c => c[0]),
-            borderWidth: 2,
-            fill: false,
-          },
-          {
-            label: "Site 2",
-            data: coherences.map(c => c[1]),
-            borderWidth: 2,
-            fill: false,
-          }
-        ]
+      ]
+    },
+    options: {
+      responsive: true,
+      animation: {
+        numbers: { duration: 0 },
+        colors: {
+          type: "color",
+          duration: 800,
+          from: "transparent"
+        }
       },
-      options: {
-        responsive: true,
-        scales: {
-          x : {title: {
+      scales: {
+        x: {
+          title: {
             display: true,
             text: "Time Steps"
-          }},
-          y: {
-            title: {
-              display: true,
-              text: "Coherence"
-            },
-            beginAtZero: true,
           }
+        },
+        y: {
+          title: {
+            display: true,
+            text: "Probability"
+          },
+          min: 0,
+          max: 1.2
         }
       }
-    });
-    console.log("Coherence chart rendered");
-  } catch (error) {
-    console.error("Error during simulation:", error);
-  }
+    }
+  });
 }
 
 function scheduleSimulationUpdate() {
-  if (paused) {
-    console.log("Simulation is paused; skipping update");
-    return;
-  }
   clearTimeout(simulationTimer);
   simulationTimer = setTimeout(() => {
     const params = {
       p: parseFloat(document.getElementById("pInput").value),
-      lam1: parseFloat(document.getElementById("lam1Input").value),
-      lam2: parseFloat(document.getElementById("lam2Input").value),
-      steps: 50
+      alpha: parseFloat(document.getElementById("alphaInput").value),
+      beta: parseFloat(document.getElementById("betaInput").value),
+      steps: 20
     };
     runSimulation(params);
   }, 300);
@@ -154,36 +115,23 @@ function scheduleSimulationUpdate() {
 
 function setupControls() {
   const pInput = document.getElementById("pInput");
-  const lam1Input = document.getElementById("lam1Input");
-  const lam2Input = document.getElementById("lam2Input");
+  const alphaInput = document.getElementById("alphaInput");
+  const betaInput = document.getElementById("betaInput");
   const pValue = document.getElementById("pValue");
-  const lam1Value = document.getElementById("lam1Value");
-  const lam2Value = document.getElementById("lam2Value");
-  const toggleBtn = document.getElementById("toggleSimulation");
+  const alphaValue = document.getElementById("alphaValue");
+  const betaValue = document.getElementById("betaValue");
 
   pInput.addEventListener("input", function() {
     pValue.textContent = pInput.value;
     scheduleSimulationUpdate();
   });
-  lam1Input.addEventListener("input", function() {
-    lam1Value.textContent = lam1Input.value;
+  alphaInput.addEventListener("input", function() {
+    alphaValue.textContent = alphaInput.value;
     scheduleSimulationUpdate();
   });
-  lam2Input.addEventListener("input", function() {
-    lam2Value.textContent = lam2Input.value;
+  betaInput.addEventListener("input", function() {
+    betaValue.textContent = betaInput.value;
     scheduleSimulationUpdate();
-  });
-
-  toggleBtn.addEventListener("click", function() {
-    paused = !paused;
-    if (paused) {
-      toggleBtn.textContent = "Resume Simulation";
-      console.log("Simulation paused");
-    } else {
-      toggleBtn.textContent = "Pause Simulation";
-      console.log("Simulation resumed");
-      scheduleSimulationUpdate();
-    }
   });
 }
 
@@ -191,9 +139,9 @@ window.addEventListener("DOMContentLoaded", function() {
   setupControls();
   const initialParams = {
     p: parseFloat(document.getElementById("pInput").value),
-    lam1: parseFloat(document.getElementById("lam1Input").value),
-    lam2: parseFloat(document.getElementById("lam2Input").value),
-    steps: 50
+    alpha: parseFloat(document.getElementById("alphaInput").value),
+    beta: parseFloat(document.getElementById("betaInput").value),
+    steps: 20
   };
   runSimulation(initialParams);
 });
