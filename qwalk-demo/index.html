@@ -7,32 +7,16 @@
 <meta name="robots" content="index, follow">
 <title>Interactive Open Quantum Walk | Pramoth Ragavan</title>
 <meta name="keywords" content="">
-<meta name="description" content="The simulation will take a few seconds to update as you vary parameters.
-  
-  
-    
-      $p$
-      
-      0.75
-    
-    
-      $\theta_0$
-      
-      0.9
-    
-    
-      $\theta_1$
-      
-      1.05
-    
-  
-  
-  
-  
-  
-  
-  
-  ">
+<meta name="description" content="Below is a simulation of Machida&rsquo;s model for the open quantum walk on $\mathbb{Z}$, for $N=50$ steps.
+In the language of TOMs and quantum Markov chains, the initial vector state $S=(S_i)_{i\in\mathbb{Z}}$ is given by
+\[
+\ S_i =
+\begin{cases}
+\ket{L}\bra{L}&#43;(1-p)\ket{R}\bra{R} &amp; \text{if } i = 0, \\
+0 &amp; \text{otherwise},
+\end{cases}
+\]
+for some $p\in[0,1]$. Equivalently, in Machida&rsquo;s original language, the walker&rsquo;s initial state is given by the $\rho=\ket{0}\otimes(p\ket{0}\bra{0}&#43;(1-p)\ket{1}\bra{1})\in\mathcal{H}_\text{pos}\otimes\mathcal{H}_d$, with the same constraints on $p$.">
 <meta name="author" content="">
 <link rel="canonical" href="https://pramothragavan.github.io/qwalk-demo/">
 <link crossorigin="anonymous" href="/assets/css/stylesheet.f49d66caae9ea0fd43f21f29e71a8d3e284517ed770f2aa86fa012953ad3c9ef.css" integrity="sha256-9J1myq6eoP1D8h8p5xqNPihFF&#43;13Dyqob6ASlTrTye8=" rel="preload stylesheet" as="style">
@@ -83,38 +67,24 @@
 </noscript><meta property="og:url" content="https://pramothragavan.github.io/qwalk-demo/">
   <meta property="og:site_name" content="Pramoth Ragavan">
   <meta property="og:title" content="Interactive Open Quantum Walk">
-  <meta property="og:description" content="The simulation will take a few seconds to update as you vary parameters. $p$ 0.75 $\theta_0$ 0.9 $\theta_1$ 1.05 ">
+  <meta property="og:description" content="Below is a simulation of Machida’s model for the open quantum walk on $\mathbb{Z}$, for $N=50$ steps.
+In the language of TOMs and quantum Markov chains, the initial vector state $S=(S_i)_{i\in\mathbb{Z}}$ is given by
+\[ \ S_i = \begin{cases} \ket{L}\bra{L}&#43;(1-p)\ket{R}\bra{R} &amp; \text{if } i = 0, \\ 0 &amp; \text{otherwise}, \end{cases} \] for some $p\in[0,1]$. Equivalently, in Machida’s original language, the walker’s initial state is given by the $\rho=\ket{0}\otimes(p\ket{0}\bra{0}&#43;(1-p)\ket{1}\bra{1})\in\mathcal{H}_\text{pos}\otimes\mathcal{H}_d$, with the same constraints on $p$.">
   <meta property="og:locale" content="en-gb">
   <meta property="og:type" content="article">
     <meta property="article:section" content="hidden">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Interactive Open Quantum Walk">
-<meta name="twitter:description" content="The simulation will take a few seconds to update as you vary parameters.
-  
-  
-    
-      $p$
-      
-      0.75
-    
-    
-      $\theta_0$
-      
-      0.9
-    
-    
-      $\theta_1$
-      
-      1.05
-    
-  
-  
-  
-  
-  
-  
-  
-  ">
+<meta name="twitter:description" content="Below is a simulation of Machida&rsquo;s model for the open quantum walk on $\mathbb{Z}$, for $N=50$ steps.
+In the language of TOMs and quantum Markov chains, the initial vector state $S=(S_i)_{i\in\mathbb{Z}}$ is given by
+\[
+\ S_i =
+\begin{cases}
+\ket{L}\bra{L}&#43;(1-p)\ket{R}\bra{R} &amp; \text{if } i = 0, \\
+0 &amp; \text{otherwise},
+\end{cases}
+\]
+for some $p\in[0,1]$. Equivalently, in Machida&rsquo;s original language, the walker&rsquo;s initial state is given by the $\rho=\ket{0}\otimes(p\ket{0}\bra{0}&#43;(1-p)\ket{1}\bra{1})\in\mathcal{H}_\text{pos}\otimes\mathcal{H}_d$, with the same constraints on $p$.">
 
 
 <script type="application/ld+json">
@@ -143,12 +113,12 @@
   "@type": "BlogPosting",
   "headline": "Interactive Open Quantum Walk",
   "name": "Interactive Open Quantum Walk",
-  "description": "The simulation will take a few seconds to update as you vary parameters. $p$ 0.75 $\\theta_0$ 0.9 $\\theta_1$ 1.05 ",
+  "description": "Below is a simulation of Machida\u0026rsquo;s model for the open quantum walk on $\\mathbb{Z}$, for $N=50$ steps.\nIn the language of TOMs and quantum Markov chains, the initial vector state $S=(S_i)_{i\\in\\mathbb{Z}}$ is given by\n\\[ \\ S_i = \\begin{cases} \\ket{L}\\bra{L}+(1-p)\\ket{R}\\bra{R} \u0026amp; \\text{if } i = 0, \\\\ 0 \u0026amp; \\text{otherwise}, \\end{cases} \\] for some $p\\in[0,1]$. Equivalently, in Machida\u0026rsquo;s original language, the walker\u0026rsquo;s initial state is given by the $\\rho=\\ket{0}\\otimes(p\\ket{0}\\bra{0}+(1-p)\\ket{1}\\bra{1})\\in\\mathcal{H}_\\text{pos}\\otimes\\mathcal{H}_d$, with the same constraints on $p$.\n",
   "keywords": [
     
   ],
-  "articleBody": "The simulation will take a few seconds to update as you vary parameters. $p$ 0.75 $\\theta_0$ 0.9 $\\theta_1$ 1.05 ",
-  "wordCount" : "19",
+  "articleBody": "Below is a simulation of Machida’s model for the open quantum walk on $\\mathbb{Z}$, for $N=50$ steps.\nIn the language of TOMs and quantum Markov chains, the initial vector state $S=(S_i)_{i\\in\\mathbb{Z}}$ is given by\n\\[ \\ S_i = \\begin{cases} \\ket{L}\\bra{L}+(1-p)\\ket{R}\\bra{R} \u0026 \\text{if } i = 0, \\\\ 0 \u0026 \\text{otherwise}, \\end{cases} \\] for some $p\\in[0,1]$. Equivalently, in Machida’s original language, the walker’s initial state is given by the $\\rho=\\ket{0}\\otimes(p\\ket{0}\\bra{0}+(1-p)\\ket{1}\\bra{1})\\in\\mathcal{H}_\\text{pos}\\otimes\\mathcal{H}_d$, with the same constraints on $p$.\nThe simulation will take a few seconds to update as you vary parameters. $p$ 0.75 $\\theta_0$ 0.9 $\\theta_1$ 1.05 ",
+  "wordCount" : "94",
   "inLanguage": "en",
   "datePublished": "0001-01-01T00:00:00Z",
   "dateModified": "0001-01-01T00:00:00Z",
@@ -241,7 +211,17 @@
 
 </div>
   </header> 
-  <div class="post-content"><p>The simulation will take a few seconds to update as you vary parameters.
+  <div class="post-content"><p>Below is a simulation of <a href="https://arxiv.org/abs/2103.01473">Machida&rsquo;s model</a> for the open quantum walk on $\mathbb{Z}$, for $N=50$ steps.</p>
+<p>In the language of TOMs and quantum Markov chains, the initial vector state $S=(S_i)_{i\in\mathbb{Z}}$ is given by</p>
+<p>\[
+\ S_i =
+\begin{cases}
+\ket{L}\bra{L}+(1-p)\ket{R}\bra{R} &amp; \text{if } i = 0, \\
+0 &amp; \text{otherwise},
+\end{cases}
+\]
+for some $p\in[0,1]$. Equivalently, in Machida&rsquo;s original language, the walker&rsquo;s initial state is given by the $\rho=\ket{0}\otimes(p\ket{0}\bra{0}+(1-p)\ket{1}\bra{1})\in\mathcal{H}_\text{pos}\otimes\mathcal{H}_d$, with the same constraints on $p$.</p>
+<p>The simulation will take a few seconds to update as you vary parameters.
   
   <div id="simulation-controls" style="margin-bottom: 1em;">
     <div>
