@@ -136,7 +136,7 @@
   </div>
 </div>
 
-<div class="problem-footer" style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 2rem 0; background-color: inherit;">
+<div class="problem-footer" style="position: fixed; bottom: 0; left: 0; right: 0; text-align: center; padding: 2rem 0; background-color: inherit;  max-width: 1100px; margin: 0 auto;">
   <div style="margin-bottom: 1rem;">
     While you're here, try this problem!
   </div>
@@ -146,7 +146,37 @@
 <script>
   const problems = [
     `Show that all non-trivial zeroes of \\[\\zeta(s)=\\sum_{n=1}^\\infty \\frac{1}{n^s}\\] have real part $\\frac{1}{2}$.`,
+
+    `A familiar result in real analysis is the Bolzano-Weierstrass theorem, which states that any bounded sequence of real numbers has a convergent subsequence. Prove this using <a href="https://mathworld.wolfram.com/RamseysTheorem.html" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Ramsey's Theorem</a>.`,
+
+    `Prove that for an irrational number $\\alpha$, there exist infinitely many rational numbers $\\frac{p}{q}$ such that \\[\\left|\\alpha-\\frac{p}{q}\\right|<\\frac{1}{q^2}.\\]`,
+
+    `Let $T$ denote the set of "monsters" in the set of continuous functions on $[0,1]$. That is,
+    \\[T = \\left\\{ f \\in C([0,1]) \\ \\Big| \\ f \\text{ is not differentiable at any point} \\right\\}.\\]
+    Show that a typical continuous function belongs to $T$, i.e. $C([0,1])\\setminus T$ is meagre in $(C([0,1]), d_\\infty)$.<br>
+    <strong>Hint:</strong> For a metric space $X$ and closed subset $N \\subseteq X$, if $X \\setminus N$ is dense then $N$ is nowhere dense.`,
+
+    `A proper colouring of a graph is a function $c$ from the vertex set of the graph to a set $C$ of “colours” with the property that, if vertices $v$ and $w$ are joined by an edge, then $c(v) \\neq c(w)$.
+    Prove, using the <a href="https://cameroncounts.wordpress.com/2025/03/09/compactness/" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Compactness Theorem for propositional logic</a>, that if every finite subgraph of an infinite graph $\\Gamma$ has a proper colouring with $k$ colours, then $\\Gamma$ has a proper colouring with $k$ colours. You may assume the Axiom of Choice.`,
+
+    `In propositional logic, a truth function is a function from the set of valuations (i.e. the set of possible assignments of truth values to the propositional variables) to the set $\\{T,F\\}$.
+    Consider the set of truth functions given by formulae using the connectives $\\neg$ (NOT) and $\\leftrightarrow$ (IFF). Assume that there are $n$ propositional variables.
+    By considering the 2-element field, show that exactly $2n+1$ truth functions can be expressed in this way and that any two of them are either complementary or agree in just half the positions.`,
+
+    `A finite set of points in the plane is said to be in <em>general position</em> if no three of the points are collinear. A <em>convex $n$-gon</em> is a set of $n$ points in general position,
+    none of which is in the interior of the polygon formed by the others.<br><br>
+    
+    (a) Prove that given five points in general position in the plane, some four of
+    the points form a convex 4-gon.<br>
+    (b) Use <a href="https://mathworld.wolfram.com/RamseysTheorem.html" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Ramsey's Theorem</a>
+     to prove that there is a function $F$ such
+    that, given $F(n)$ points in the plane, some $n$ of them form a convex $n$-gon.<br>
+    (<strong>Hint:</strong> $F(n) = R_4(5,n)$. You need to show that given $n$ points, if any four of
+    them form a convex 4-gon, then all the points form a convex $n$-gon.)<br><br>
+    This problem is known as the <a href="https://en.wikipedia.org/wiki/Happy_ending_problem" target="_blank" rel="noopener noreferrer" style="text-decoration: underline;">Happy End Theorem</a>.
+    Part (a) was proven by Esther Szekeres and part (b) was later proven by George Szekeres. Erdős named it so because it led to the marriage of Esther and George.`,
   ];
+
 
   const randomIndex = Math.floor(Math.random() * problems.length);
   document.getElementById("problem").innerHTML = problems[randomIndex];
