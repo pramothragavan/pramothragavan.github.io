@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>A Demonstration of Ramsey&#39;s Theorem | Pramoth Ragavan</title>
+<meta name="keywords" content="">
+<meta name="description" content="Ramsey&rsquo;s theorem intuitively states that in a large enough set, there must be some amount of order. To state this formally, suppose that $k$ and $l$ are given positive integers. Ramsey&rsquo;s theorem asserts the existence a positive integer $N$ such that for $n\ge N$, if the 2-subsets of an $n$-set are coloured red or blue in any manner, there is either a $k$-set all of whose 2-subsets are red, or an $l$-set all of whose 2-subsets are blue.">
+<meta name="author" content="">
+<link rel="canonical" href="https://pramothragavan.github.io/ramsey-demo/">
+<link crossorigin="anonymous" href="/assets/css/stylesheet.a7e83e26ed46832a12de4141cf206ea3c7fce703463eb25f20261a91651da9d1.css" integrity="sha256-p&#43;g&#43;Ju1GgyoS3kFBzyBuo8f85wNGPrJfICYakWUdqdE=" rel="preload stylesheet" as="style">
+<link rel="icon" href="https://pramothragavan.github.io/assets/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://pramothragavan.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://pramothragavan.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://pramothragavan.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://pramothragavan.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<link rel="alternate" hreflang="en" href="https://pramothragavan.github.io/ramsey-demo/">
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --code-block-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:url" content="https://pramothragavan.github.io/ramsey-demo/">
+  <meta property="og:site_name" content="Pramoth Ragavan">
+  <meta property="og:title" content="A Demonstration of Ramsey&#39;s Theorem">
+  <meta property="og:description" content="Ramsey’s theorem intuitively states that in a large enough set, there must be some amount of order. To state this formally, suppose that $k$ and $l$ are given positive integers. Ramsey’s theorem asserts the existence a positive integer $N$ such that for $n\ge N$, if the 2-subsets of an $n$-set are coloured red or blue in any manner, there is either a $k$-set all of whose 2-subsets are red, or an $l$-set all of whose 2-subsets are blue.">
+  <meta property="og:locale" content="en-gb">
+  <meta property="og:type" content="article">
+    <meta property="article:section" content="hidden">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="A Demonstration of Ramsey&#39;s Theorem">
+<meta name="twitter:description" content="Ramsey&rsquo;s theorem intuitively states that in a large enough set, there must be some amount of order. To state this formally, suppose that $k$ and $l$ are given positive integers. Ramsey&rsquo;s theorem asserts the existence a positive integer $N$ such that for $n\ge N$, if the 2-subsets of an $n$-set are coloured red or blue in any manner, there is either a $k$-set all of whose 2-subsets are red, or an $l$-set all of whose 2-subsets are blue.">
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Hiddens",
+      "item": "https://pramothragavan.github.io/hidden/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "A Demonstration of Ramsey's Theorem",
+      "item": "https://pramothragavan.github.io/ramsey-demo/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "A Demonstration of Ramsey's Theorem",
+  "name": "A Demonstration of Ramsey\u0027s Theorem",
+  "description": "Ramsey\u0026rsquo;s theorem intuitively states that in a large enough set, there must be some amount of order. To state this formally, suppose that $k$ and $l$ are given positive integers. Ramsey\u0026rsquo;s theorem asserts the existence a positive integer $N$ such that for $n\\ge N$, if the 2-subsets of an $n$-set are coloured red or blue in any manner, there is either a $k$-set all of whose 2-subsets are red, or an $l$-set all of whose 2-subsets are blue.\n",
+  "keywords": [
+    
+  ],
+  "articleBody": "Ramsey’s theorem intuitively states that in a large enough set, there must be some amount of order. To state this formally, suppose that $k$ and $l$ are given positive integers. Ramsey’s theorem asserts the existence a positive integer $N$ such that for $n\\ge N$, if the 2-subsets of an $n$-set are coloured red or blue in any manner, there is either a $k$-set all of whose 2-subsets are red, or an $l$-set all of whose 2-subsets are blue.\nIt’s worth mentioning that colouring a 2-set can be visualised as colouring the edge in a graph induced by the $n$-set. The Ramsey number $R_2(k,l)$ is defined as the smallest number for which the conclusion of the above theorem holds.\nFinding exact values of Ramsey numbers is one of the most difficult open problems in combinatorics. For instance, $R_2(k,k)$ is not known for $k\u003e4$. Paul Erdős made the point this way. If aliens invaded the earth and gave us a year to calculate $R_2(5,5)$, he said, we could put all our mathematicians and computers on the job and probably succeed. But if they had asked instead for $R_2(6,6)$, our only hope would be to destroy them before they destroyed us.\nBelow is a toy demonstration of Ramsey’s theorem. You are welcome to set values for parameters $n$, $k$ and $l$, and a random colouring of the complete graph on $n$ vertices will be generated. If a blue $k$-set or a red $l$-set exists, then it will be highlighted (note that if you are using the dark theme, then pink and purple are used instead). Of course, the existence of a clique does not mean that you have found the value of $R_2(k,l)$ (as we would need to show a clique exists for all colourings, not just a random one), but the non-existence of such a clique does correspond to a lower bound. A table of (bounds for) $R_2(k,l)$, taken from Wikipedia, is included below. $n$: 12\n$k$: 4\n$l$: 4\nRefresh colouring Values / known bounding ranges for Ramsey numbers $R_2(k, l)$ (A212954)\n$l$$k$ 1 2 3 4 5 6 7 8 9 10 1 1 1 1 1 1 1 1 1 1 1 2 2 3 4 5 6 7 8 9 10 3 6 9 14 18 23 28 36 40–41 4 18 25 36–40 49–58 59–79 73–105 92–135 5 43–46 59–85 80–133 101–193 133–282 149–381 6 102–160 115–270 134–423 183–651 204–944 7 205–492 219–832 252–1368 292–2119 8 282–1518 329–2662 343–4402 9 565–4956 581–8675 10 798–16064 Ramsey’s theorem can be generalised further by allowing for more than 2 colours, and allowing for colouring subsets of any size. The latter generalisation makes it a little harder to visualise things.\nTheorem: Let $k, r, l_1, \\dots, l_r$ be given positive integers with $k\\leq l_i$ for $i=1,\\dots, r$. Then there exists a number $n$ with the following property: if the $k$-subsets of $\\{1,…,n\\}$ are coloured with $r$ colours $c_1,\\dots, c_r$, then for some value of $i \\in \\{1,\\dots,r\\}$, there exists a set of $l_i$ points, all of whose $k$-subsets have colour $c_i$. The smallest such $n$ is denoted $R_k(l_1, l_2, \\dots, l_r)$.\nThere is in fact an infinite version of Ramsey’s Theorem:\nTheorem: Given positive integers $k$ and $r$, if the $k$-element subsets of an infinite set $X$ are coloured with $r$ colours, there is an infinite monochromatic subset $Y$ of $X$.\n",
+  "wordCount" : "560",
+  "inLanguage": "en",
+  "datePublished": "0001-01-01T00:00:00Z",
+  "dateModified": "0001-01-01T00:00:00Z",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://pramothragavan.github.io/ramsey-demo/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Pramoth Ragavan",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://pramothragavan.github.io/assets/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+</script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.4/dist/contrib/auto-render.min.js"
+        onload="renderMathInElement(document.body, {
+            delimiters: [
+                {left: '$', right: '$', display: false},
+                {left: '$$', right: '$$', display: true},
+                {left: '\\(', right: '\\)', display: false},
+                {left: '\\[', right: '\\]', display: true}
+            ],
+            throwOnError: false
+        });">
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://pramothragavan.github.io/" accesskey="h" title="Pramoth Ragavan (Alt + H)">Pramoth Ragavan</a>
+            <div class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)" aria-label="Toggle theme">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="18" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+            </div>
+        </div>
+        <ul id="menu">
+        </ul>
+    </nav>
+    <script>
+        document.getElementById("theme-toggle").addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            localStorage.setItem("pref-theme", document.body.classList.contains("dark") ? "dark" : "light");
+        });
+    </script>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title entry-hint-parent">
+      A Demonstration of Ramsey&#39;s Theorem
+    </h1>
+    <div class="post-meta">
+
+</div>
+  </header> 
+  <div class="post-content"><p>Ramsey&rsquo;s theorem intuitively states that in a large enough set, there must be some amount of order. To state this formally, suppose that $k$ and $l$ are given positive integers. Ramsey&rsquo;s theorem asserts the existence a positive integer $N$ such that for $n\ge N$, if the 2-subsets of an $n$-set are coloured red or blue in any manner, there is either a $k$-set all of whose 2-subsets are red, or an $l$-set all of whose 2-subsets are blue.</p>
+<p><img src="https://upload.wikimedia.org/wikipedia/en/f/f3/Frank_Plumpton_Ramsey.JPG"
+alt="Frank Ramsey"
+style="display: block; margin: 0 auto 1rem auto; max-width: 50%; height: 5cm; "></p>
+<p>It&rsquo;s worth mentioning that colouring a 2-set can be visualised as colouring the edge in a graph induced by the $n$-set. The Ramsey number $R_2(k,l)$ is defined as the smallest number for which the conclusion of the above theorem holds.</p>
+<p>Finding exact values of Ramsey numbers is one of the most difficult open problems in combinatorics. For instance, $R_2(k,k)$ is not known for $k&gt;4$. Paul Erdős made the point this way. If aliens invaded the earth and gave us a year to calculate $R_2(5,5)$, he said, we could put all our mathematicians and computers on the job and probably succeed. But if they had asked instead for $R_2(6,6)$, our only hope would be to destroy them before they destroyed us.</p>
+<p>Below is a toy demonstration of Ramsey&rsquo;s theorem. You are welcome to set values for parameters $n$, $k$ and $l$, and a random colouring of the complete graph on $n$ vertices will be generated. If a blue $k$-set or a red $l$-set exists, then it will be highlighted (note that if you are using the dark theme, then pink and purple are used instead). Of course, the existence of a clique does not mean that you have found the value of $R_2(k,l)$ (as we would need to show a clique exists for all colourings, not just a random one), but the non-existence of such a clique does correspond to a lower bound. A table of (bounds for) $R_2(k,l)$, taken from Wikipedia, is included below.
+<div id="ramsey-container" style="
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 1rem;
+">
+
+  <div id="ramsey-controls" style="display: flex; gap: 1.5rem; flex-wrap: wrap; justify-content: center;">
+    <div>
+      <label for="NInput">$n$: <span id="NInputValue">12</span></label><br>
+      <input type="range" id="NInput" min="3" max="50" step="1" value="12">
+    </div>
+
+    <div>
+      <label for="kInput">$k$: <span id="kInputValue">4</span></label><br>
+      <input type="range" id="kInput" min="2" max="10" step="1" value="4">
+    </div>
+
+    <div>
+      <label for="lInput">$l$: <span id="lInputValue">4</span></label><br>
+      <input type="range" id="lInput" min="2" max="10" step="1" value="4">
+    </div>
+  </div>
+
+<button
+  id="ramseyRefresh"
+  class="btn"
+>
+  Refresh colouring
+</button>
+
+
+
+  <div id="ramseyGraph" style="max-width: 100%;"></div>
+
+  <div id="ramseyStatus" style="font-weight: bold; text-align: center;"></div>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/pyodide/v0.23.4/full/pyodide.js"></script>
+<script src="/assets/ramsey.js"></script>
+</p>
+<p>Values / known bounding ranges for Ramsey numbers $R_2(k, l)$ (<span class="nowrap external"><a href="//oeis.org/A212954" class="extiw" title="oeis:A212954">A212954</a></span></a>)</p>
+<div class="table-wrapper">
+<table class="wikitable">
+<tbody><tr>
+<th style="background:var(--background-color-neutral,#eaecf0);color:inherit;background:linear-gradient(to top right,var(--background-color-neutral,#eaecf0) 49%,var(--border-color-base,#a2a9b1) 49.5%,var(--border-color-base,#a2a9b1) 50.5%,var(--background-color-neutral,#eaecf0) 51%);line-height:1.2;padding:0.1em 0.4em;"><div style="margin-left:2em;text-align:right"><i>$l$</i></div><div style="margin-right:2em;text-align:left"><i>$k$</i></div>
+</th>
+<th width="27">1
+</th>
+<th width="33">2
+</th>
+<th width="39">3
+</th>
+<th width="45">4
+</th>
+<th>5
+</th>
+<th>6
+</th>
+<th>7
+</th>
+<th>8
+</th>
+<th>9
+</th>
+<th>10
+</th></tr>
+<tr>
+<th>1
+</th>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">1
+</td></tr>
+<tr>
+<th>2
+</th>
+<td>
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">2
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">3
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">4
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">5
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">6
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">7
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">8
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">9
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">10
+</td></tr>
+<tr>
+<th>3
+</th>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">6
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">9
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">14
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">18
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">23
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">28
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">36
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">40–41
+</td></tr>
+<tr>
+<th>4
+</th>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">18
+</td>
+<td style="background:#9EFF9E;color:black;vertical-align:middle;text-align:center;" class="table-yes">25
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">36–40
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">49–58
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">59–79
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">73–105
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">92–135
+</td></tr>
+<tr>
+<th>5
+</th>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">43–46
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">59–85
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">80–133
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">101–193
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">133–282
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">149–381
+</td></tr>
+<tr>
+<th>6
+</th>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">102–160
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">115–270
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">134–423
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">183–651
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">204–944
+</td></tr>
+<tr>
+<th>7
+</th>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">205–492
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">219–832
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">252–1368
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">292–2119
+</td></tr>
+<tr>
+<th>8
+</th>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">282–1518
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">329–2662
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">343–4402
+</td></tr>
+<tr>
+<th>9
+</th>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">565–4956
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">581–8675
+</td></tr>
+<tr>
+<th>10
+</th>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td>
+</td>
+<td> 
+</td>
+<td>
+</td>
+<td>
+</td>
+<td style="background:#FFB; color:black;vertical-align:middle;text-align:center;" class="table-partial">798–16064
+</td></tr></tbody></table></div>
+<p>Ramsey&rsquo;s theorem can be generalised further by allowing for more than 2 colours, and allowing for colouring subsets of any size. The latter generalisation makes it a little harder to visualise things.</p>
+<p><strong>Theorem: </strong> Let $k, r, l_1, \dots, l_r$ be given positive integers with $k\leq l_i$ for $i=1,\dots, r$. Then there exists a number $n$ with the following property: if the $k$-subsets of $\{1,&hellip;,n\}$ are coloured with $r$ colours $c_1,\dots, c_r$, then for some value of $i \in \{1,\dots,r\}$, there exists a set of $l_i$ points, all of whose $k$-subsets have colour $c_i$. The smallest such $n$ is denoted $R_k(l_1, l_2, \dots, l_r)$.</p>
+<p>There is in fact an infinite version of Ramsey&rsquo;s Theorem:</p>
+<p><strong>Theorem: </strong> Given positive integers $k$ and $r$, if the $k$-element subsets of an infinite set $X$ are coloured with $r$ colours, there is an infinite monochromatic subset $Y$ of $X$.</p>
+
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+    </ul>
+  </footer>
+</article>
+    </main>
+    </body>
+
+</html>
