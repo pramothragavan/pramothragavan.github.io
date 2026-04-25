@@ -1,0 +1,594 @@
+.album-shelf-page {
+  max-width: 760px;
+  --album-surface: rgb(239, 231, 212);
+  --album-surface-strong: rgb(229, 219, 195);
+  --album-panel-bg: rgb(236, 227, 206);
+  --album-border: rgb(202, 184, 146);
+  --album-accent: rgb(93, 90, 52);
+  --album-muted: rgb(88, 84, 53);
+  --album-shadow: none;
+}
+
+body.dark .album-shelf-page {
+  --album-surface: rgb(40, 41, 45);
+  --album-surface-strong: rgb(48, 49, 54);
+  --album-panel-bg: linear-gradient(180deg, var(--album-surface), var(--album-surface-strong));
+  --album-border: rgb(78, 81, 89);
+  --album-accent: rgb(182, 184, 191);
+  --album-muted: rgb(148, 150, 157);
+  --album-shadow: rgba(0, 0, 0, 0.24);
+}
+
+.album-shelf-page .terminal-summary {
+  display: block;
+  width: 100%;
+  margin: 2rem 0 1.6rem;
+  padding: 0;
+  text-align: left;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+}
+
+.album-shelf-page .terminal-summary-title {
+  color: var(--primary);
+  font-size: 0.9rem;
+  line-height: 1.3;
+}
+
+.album-shelf-page .terminal-summary-box {
+  position: relative;
+  display: grid;
+  gap: 0.25rem;
+  box-sizing: border-box;
+  width: 100%;
+  margin: 0;
+  padding: 0.95rem 1.75rem 0.95rem 1rem;
+  border: 1px solid var(--album-border);
+  border-left: 4px solid var(--album-accent);
+  border-radius: 0.35rem;
+  background: var(--album-panel-bg);
+  box-shadow: 0 12px 30px -24px var(--album-shadow);
+  font-family: inherit;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  overflow: visible;
+}
+
+.album-shelf-page .terminal-summary-lower {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+}
+
+.album-shelf-page .terminal-summary-actions-col {
+  display: grid;
+  gap: 0.25rem;
+  flex: 0 0 auto;
+  min-width: calc(1.25rem + 0.25rem + 17rem);
+}
+
+.album-shelf-page .terminal-summary-chart {
+  flex: 1 1 0;
+  min-width: 120px;
+  margin-left: 0.25rem;
+  padding-left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.album-shelf-page .terminal-summary-chart[hidden] {
+  display: none;
+}
+
+.album-shelf-page .year-chart-bars {
+  display: flex;
+  align-items: flex-end;
+  gap: 4px;
+  height: 90px;
+}
+
+.album-shelf-page .terminal-summary-lower:has(#keybindings-action.is-visible) .year-chart-bars {
+  height: calc(90px + 1.75rem);
+}
+
+.album-shelf-page .year-bar-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  flex: 1;
+  min-width: 0;
+  height: 100%;
+  gap: 2px;
+}
+
+.album-shelf-page .year-bar-wrap {
+  flex: 1;
+  width: 100%;
+  display: flex;
+  align-items: flex-end;
+}
+
+.album-shelf-page .year-bar {
+  position: relative;
+  width: 100%;
+  background: var(--album-accent);
+  border-radius: 2px 2px 0 0;
+  min-height: 2px;
+  opacity: 0.55;
+  transition: opacity 150ms ease;
+  animation: bar-grow 450ms ease-out both;
+  transform-origin: bottom;
+}
+
+.album-shelf-page .year-bar-col:hover .year-bar {
+  opacity: 0.9;
+}
+
+.album-shelf-page .year-bar-count {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  padding-bottom: 2px;
+  white-space: nowrap;
+  font-size: 0.62rem;
+  color: var(--album-muted);
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 120ms ease;
+  pointer-events: none;
+}
+
+.album-shelf-page .year-bar-col:hover .year-bar-count {
+  opacity: 1;
+}
+
+.album-shelf-page .year-bar-label {
+  font-size: 0.62rem;
+  color: var(--album-muted);
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+@keyframes bar-grow {
+  from { transform: scaleY(0); }
+  to   { transform: scaleY(1); }
+}
+
+.album-shelf-page .terminal-summary-heading {
+  display: block;
+  margin: 0 0 0.2rem;
+  padding: 0;
+}
+
+.album-shelf-page .terminal-summary-actions-heading {
+  display: block;
+  margin: 1rem 0 0;
+  padding: 0;
+}
+
+.album-shelf-page .terminal-summary-row {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(13rem, 17rem) 1fr;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.album-shelf-page .terminal-prompt {
+  color: var(--album-muted);
+}
+
+.album-shelf-page .terminal-key {
+  color: var(--album-muted);
+}
+
+.album-shelf-page .terminal-key::after {
+  content: ":";
+}
+
+.album-shelf-page .terminal-keybindings .terminal-key::after {
+  content: "";
+}
+
+.album-shelf-page .terminal-search-label .terminal-key::after {
+  content: "";
+}
+
+.album-shelf-page .terminal-value {
+  color: var(--primary);
+}
+
+.album-shelf-page .terminal-summary-actions {
+  display: grid;
+  gap: 0.35rem;
+  margin-top: 0;
+}
+
+.album-shelf-page .terminal-keybindings {
+  display: none;
+  gap: 0.25rem;
+}
+
+.album-shelf-page .terminal-keybindings.is-visible {
+  display: grid;
+}
+
+.album-shelf-page .terminal-search {
+  display: none;
+  gap: 0.35rem;
+}
+
+.album-shelf-page .terminal-search.is-visible {
+  display: grid;
+}
+
+.album-shelf-page .terminal-search-label {
+  display: grid;
+  grid-template-columns: 1.25rem minmax(5rem, auto);
+  gap: 0.25rem;
+  align-items: center;
+  color: var(--album-muted);
+}
+
+.album-shelf-page .terminal-search-shell {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.08ch;
+  min-height: 2.2rem;
+  padding: 0.45rem 0.55rem;
+  color: var(--primary);
+  background: color-mix(in srgb, var(--album-surface) 72%, transparent);
+  border: 1px solid var(--album-border);
+  border-radius: 0.25rem;
+  font: inherit;
+  line-height: 1.3;
+  white-space: pre;
+  overflow-x: auto;
+}
+
+.album-shelf-page .terminal-search-text {
+  flex: 0 0 auto;
+}
+
+.album-shelf-page .terminal-search-shell.is-empty .terminal-search-text {
+  color: var(--album-muted);
+}
+
+.album-shelf-page .terminal-search-cursor {
+  display: none;
+  width: 0.55ch;
+  height: 0.9em;
+  background: var(--primary);
+  transform: translateY(0.02em);
+}
+
+.album-shelf-page .terminal-search-shell.is-focused .terminal-search-cursor {
+  display: inline-block;
+  animation: terminal-block-blink 1s steps(1) infinite;
+}
+
+.album-shelf-page .terminal-search-input {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  padding: 0.45rem 0.55rem;
+  color: transparent;
+  caret-color: transparent;
+  background: transparent;
+  border: 0;
+  border-radius: 0.25rem;
+  font: inherit;
+}
+
+.album-shelf-page .terminal-search-input:focus-visible {
+  outline: none;
+}
+
+.album-shelf-page .terminal-search-shell.is-focused {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 2px;
+}
+
+.album-shelf-page .terminal-search-status {
+  color: var(--album-muted);
+  min-height: 1.4em;
+}
+
+@keyframes terminal-block-blink {
+  50% {
+    opacity: 0;
+  }
+}
+
+.album-shelf-page .terminal-option-row {
+  display: grid;
+  grid-template-columns: 1.25rem 1fr;
+  gap: 0.25rem;
+  margin: 0;
+  padding: 0;
+}
+
+.album-shelf-page .terminal-option-row-hidden {
+  display: none;
+}
+
+.album-shelf-page .shelf-mobile-only {
+  display: none;
+}
+
+.album-shelf-page .shelf-desktop-only {
+  display: grid;
+}
+
+.album-shelf-page .terminal-option-row-hidden.is-visible {
+  display: grid;
+}
+
+.album-shelf-page .terminal-action-button {
+  justify-self: start;
+  padding: 0;
+  color: var(--album-muted);
+  background: transparent;
+  border: 0;
+  font: inherit;
+  cursor: pointer;
+  transition: color 160ms ease, transform 160ms ease;
+}
+
+.album-shelf-page .terminal-action-link {
+  text-decoration: none;
+}
+
+.album-shelf-page .terminal-action-button:hover,
+.album-shelf-page .terminal-action-button:focus-visible {
+  color: var(--primary);
+}
+
+.album-shelf-page .terminal-action-button.is-active {
+  color: var(--primary);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.album-shelf-page .terminal-action-button:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 3px;
+}
+
+.album-shelf-page .terminal-action-button:active,
+.album-shelf-page .terminal-action-button.is-picking {
+  transform: translateY(1px);
+}
+
+.record-shelf {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  border-top: 1px solid var(--album-border);
+}
+
+.record {
+  border-bottom: 1px solid var(--album-border);
+  scroll-margin-block: 7rem;
+}
+
+.record.is-filtered-out {
+  display: none;
+}
+
+.record-spine {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4.5rem 1fr minmax(8rem, 35%);
+  align-items: start;
+  gap: 1rem;
+  padding: 0.7rem 0.4rem;
+  text-align: left;
+}
+
+.record.is-open .record-spine {
+  background: var(--album-surface);
+}
+
+.record.is-active-record .record-spine {
+  background: color-mix(in srgb, var(--album-surface) 76%, transparent);
+  outline: 1px solid var(--album-border);
+  outline-offset: -1px;
+}
+
+.record.is-active-record:not(.is-open) .record-toggle {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.record.is-search-match .record-spine {
+  border-left: 3px solid color-mix(in srgb, var(--album-accent) 55%, transparent);
+  padding-left: calc(0.4rem - 3px);
+}
+
+.record.just-pulled .record-spine {
+  animation: shelf-nudge 520ms ease;
+}
+
+.record-year {
+  color: var(--album-muted);
+  font-family: monospace;
+}
+
+.record-title {
+  font-weight: 600;
+}
+
+.record-toggle {
+  width: fit-content;
+  align-self: start;
+  padding: 0;
+  font: inherit;
+  color: var(--primary);
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.record-toggle:hover,
+.record-toggle:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.record-toggle:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 3px;
+}
+
+.record-artist {
+  color: var(--album-muted);
+  text-align: right;
+}
+
+.record-sleeve {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  padding: 1rem 0.4rem 1.2rem;
+  background: var(--album-surface);
+}
+
+.record-sleeve[hidden] {
+  display: none;
+}
+
+.record-cover {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  transform: rotate(-1deg);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
+}
+
+.record-details p {
+  margin: 0 0 0.6rem;
+}
+
+.track-label {
+  font-size: 0.8em;
+  color: var(--album-muted);
+}
+
+.track-p a {
+  font-size: 0.8em;
+  color: var(--album-muted);
+}
+
+.track-value {
+  font-size: 0.8em;
+  color: var(--album-muted);
+}
+
+.record-album {
+  font-size: 1.05rem;
+}
+
+.record-album-header {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: start;
+  gap: 0.8rem;
+  margin-bottom: 0.18rem;
+}
+
+.record-album-header strong,
+.record-album-header strong a {
+  display: block;
+}
+
+.record-format-tag {
+  flex: 0 0 auto;
+  color: var(--album-muted);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.9rem;
+  line-height: 1.3;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+}
+
+.record-album-artist {
+  display: block;
+}
+
+@keyframes shelf-nudge {
+  0% {
+    transform: translateX(0);
+  }
+
+  35% {
+    transform: translateX(0.45rem);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .album-shelf-page .terminal-summary-row {
+    grid-template-columns: 1.25rem 1fr;
+  }
+
+  .album-shelf-page .terminal-value {
+    grid-column: 2;
+  }
+
+  .album-shelf-page .terminal-summary-lower {
+    flex-direction: column;
+  }
+
+  .album-shelf-page .terminal-summary-chart {
+    display: none;
+  }
+
+  .album-shelf-page .shelf-desktop-only {
+    display: none;
+  }
+
+  .album-shelf-page .shelf-mobile-only {
+    display: grid;
+  }
+
+  .record-spine {
+    grid-template-columns: 3.5rem 1fr;
+  }
+
+  .record-artist {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .record-sleeve {
+    grid-template-columns: 1fr;
+  }
+
+  .record-album-header {
+    gap: 0.5rem;
+  }
+
+  .record-format-tag {
+    font-size: 0.9rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .album-shelf-page .terminal-action-button,
+  .album-shelf-page .terminal-action-button.is-picking,
+  .album-shelf-page .year-bar,
+  .record.just-pulled .record-spine {
+    animation: none;
+    transition: none;
+  }
+}

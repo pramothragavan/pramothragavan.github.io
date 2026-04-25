@@ -1,0 +1,281 @@
+.album-shelf-page {
+  max-width: 760px;
+}
+
+.shelf-summary {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.7rem;
+  margin: 2rem 0 1.5rem;
+}
+
+.shelf-stat {
+  padding: 0.8rem;
+  border: 1px solid var(--border);
+  border-radius: 0.7rem;
+  background: var(--entry);
+}
+
+.shelf-stat-wide {
+  grid-column: 1 / -1;
+}
+
+.shelf-stat-value,
+.shelf-stat-label {
+  display: block;
+}
+
+.shelf-stat-value {
+  font-weight: 700;
+  line-height: 1.25;
+}
+
+.shelf-stat-label {
+  margin-top: 0.25rem;
+  color: var(--secondary);
+  font-size: 0.85rem;
+}
+
+.shelf-controls {
+  display: flex;
+  justify-content: center;
+  margin: 2.2rem 0 1.6rem;
+}
+
+.crate-button {
+  position: relative;
+  width: 5.5rem;
+  height: 4.5rem;
+  padding: 0;
+  color: var(--primary);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.crate-button-art {
+  position: absolute;
+  inset: 0;
+  display: block;
+}
+
+.crate-record {
+  position: absolute;
+  left: 1.35rem;
+  top: 0.15rem;
+  width: 2.7rem;
+  height: 2.7rem;
+  border: 0.45rem solid var(--primary);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, var(--theme) 0 18%, transparent 19%),
+    var(--entry);
+  transform: translateY(0) rotate(-5deg);
+  transition:
+    transform 180ms ease,
+    opacity 180ms ease;
+}
+
+.crate-box {
+  position: absolute;
+  left: 0.55rem;
+  right: 0.55rem;
+  bottom: 0.35rem;
+  height: 2.35rem;
+  border: 2px solid var(--primary);
+  border-radius: 0.25rem 0.25rem 0.45rem 0.45rem;
+  background:
+    linear-gradient(
+      135deg,
+      transparent 0 44%,
+      var(--border) 45% 55%,
+      transparent 56% 100%
+    ),
+    linear-gradient(
+      45deg,
+      transparent 0 44%,
+      var(--border) 45% 55%,
+      transparent 56% 100%
+    ),
+    var(--theme);
+}
+
+.crate-box::before {
+  content: "";
+  position: absolute;
+  left: 0.45rem;
+  right: 0.45rem;
+  top: 0.55rem;
+  border-top: 2px solid var(--primary);
+}
+
+.crate-button:hover .crate-record,
+.crate-button:focus-visible .crate-record {
+  transform: translateY(-0.55rem) rotate(-10deg);
+}
+
+.crate-button:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 0.35rem;
+  border-radius: 0.7rem;
+}
+
+.crate-button.is-pulling .crate-record {
+  animation: pull-record 520ms ease;
+}
+
+.record-shelf {
+  list-style: none;
+  padding: 0;
+  margin: 2rem 0;
+  border-top: 1px solid var(--border);
+}
+
+.record {
+  border-bottom: 1px solid var(--border);
+}
+
+.record-spine {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 4.5rem 1fr minmax(8rem, 35%);
+  align-items: start;
+  gap: 1rem;
+  padding: 0.7rem 0.4rem;
+  text-align: left;
+}
+
+.record.is-open .record-spine {
+  background: var(--entry);
+}
+
+.record.just-pulled .record-spine {
+  animation: shelf-nudge 520ms ease;
+}
+
+.record-year {
+  color: var(--secondary);
+  font-family: monospace;
+}
+
+.record-title {
+  font-weight: 600;
+}
+
+.record-toggle {
+  width: fit-content;
+  align-self: start;
+  padding: 0;
+  font: inherit;
+  color: var(--primary);
+  text-align: left;
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.record-toggle:hover,
+.record-toggle:focus-visible {
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+}
+
+.record-toggle:focus-visible {
+  outline: 2px solid var(--tertiary);
+  outline-offset: 3px;
+}
+
+.record-artist {
+  color: var(--secondary);
+  text-align: right;
+}
+
+.record-sleeve {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  gap: 1rem;
+  padding: 1rem 0.4rem 1.2rem;
+  background: var(--entry);
+}
+
+.record-sleeve[hidden] {
+  display: none;
+}
+
+.record-cover {
+  width: 120px;
+  height: 120px;
+  object-fit: cover;
+  border-radius: 4px;
+  transform: rotate(-1deg);
+  box-shadow: 0 0.5rem 1.5rem rgba(0, 0, 0, 0.12);
+}
+
+.record-details p {
+  margin: 0 0 0.6rem;
+}
+
+.record-album {
+  font-size: 1.05rem;
+}
+
+@keyframes pull-record {
+  0% {
+    transform: translateY(0) rotate(-5deg);
+  }
+
+  45% {
+    transform: translateY(-1rem) rotate(-13deg);
+  }
+
+  100% {
+    transform: translateY(0) rotate(-5deg);
+  }
+}
+
+@keyframes shelf-nudge {
+  0% {
+    transform: translateX(0);
+  }
+
+  35% {
+    transform: translateX(0.45rem);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
+}
+
+@media (max-width: 640px) {
+  .shelf-summary {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .record-spine {
+    grid-template-columns: 3.5rem 1fr;
+  }
+
+  .record-artist {
+    grid-column: 2;
+    text-align: left;
+  }
+
+  .record-sleeve {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .crate-record,
+  .crate-button.is-pulling .crate-record,
+  .record.just-pulled .record-spine {
+    animation: none;
+    transition: none;
+  }
+
+  .crate-button:hover .crate-record,
+  .crate-button:focus-visible .crate-record {
+    transform: translateY(0) rotate(-5deg);
+  }
+}

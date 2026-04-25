@@ -5,7 +5,11 @@ function isDarkMode() {
   const htmlDark = document.documentElement.classList.contains('dark');
   const bodyDark = document.body.classList.contains('dark');
   
-  return (htmlDark || bodyDark)
+  if (htmlDark || bodyDark) {
+    console.groupEnd();
+    return true;
+  }
+  return false;
 }
 
 
@@ -29,8 +33,8 @@ async function runRamsey(params) {
   await initRamsey();
   if (!ramseyReady) return;
   const dark = isDarkMode();
-  const col1 = dark ? "#EF88AD" : "blue";
-  const col2 = dark ? "#B084CC" : "red";
+  const col1 = dark ? "#EF88AD" /* baby-pink */ : "blue";
+  const col2 = dark ? "#B084CC" /* baby-pink */ : "red";
 
   const code = `
 import ramsey
@@ -73,6 +77,15 @@ function setupRamseyControls() {
 
   document.getElementById("ramseyRefresh")
           .addEventListener("click", () => runRamsey(getParams()));
+
+    window.getParams   = getParams;
+    window.runRamsey   = runRamsey;
+
+
+  const btn = document.getElementById("ramseyRefresh");
+  btn.addEventListener("click", () => {
+    runRamsey(getParams());
+  });
 
   runRamsey(getParams());
 }
