@@ -1705,7 +1705,7 @@
     "artist_names": [
       "John Coltrane Quartet"
     ],
-    "release_date": "2007-01-01",
+    "release_date": "1963",
     "track_name": "All Or Nothing At All",
     "track_url": "https://open.spotify.com/track/79lOA9cjiispflDp40oCuQ",
     "album_url": "https://open.spotify.com/album/2fdnSzyVkyG5R0VJgo9Gv5",
@@ -2571,5 +2571,31 @@
     "album_url": "https://open.spotify.com/album/1Td1oiZTQFYR7N1QX00uhr",
     "cover_url": "https://i.scdn.co/image/ab67616d0000b27388e15b861bc38f527f4122e8",
     "added_at": "2026-05-19T14:27:49Z"
+  },
+  {
+    "album_id": "5siV9C6eK0NpAqER2FfCVA",
+    "album_name": "WOR$T GIRL IN AMERICA",
+    "artist_names": [
+      "Slayyyter"
+    ],
+    "release_date": "2026-03-27",
+    "track_name": "BEAT UP CHANEL$",
+    "track_url": "https://open.spotify.com/track/0rLtUuQgwIlw6vv2eqHKdt",
+    "album_url": "https://open.spotify.com/album/5siV9C6eK0NpAqER2FfCVA",
+    "cover_url": "https://i.scdn.co/image/ab67616d0000b2734c6a0c9499470002aa8ba96f",
+    "added_at": "2026-05-27T15:27:10Z"
+  },
+  {
+    "album_id": "4T7qu6MdxoGjzZPErRWgsO",
+    "album_name": "HALO",
+    "artist_names": [
+      "Tiffany Day"
+    ],
+    "release_date": "2026-04-03",
+    "track_name": "NO LUCK",
+    "track_url": "https://open.spotify.com/track/7xSm07mkWui2K3XkwUTgFi",
+    "album_url": "https://open.spotify.com/album/4T7qu6MdxoGjzZPErRWgsO",
+    "cover_url": "https://i.scdn.co/image/ab67616d0000b273b5b273ebd1632a05019cd75c",
+    "added_at": "2026-06-01T14:46:34Z"
   }
 ]
